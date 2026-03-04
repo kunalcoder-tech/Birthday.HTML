@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Birthday Vaishnavi 💖</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #ff6ec4, #7873f5);
+    font-family: Arial;
+    text-align: center;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Falling Hearts */
+.heart {
+    position: fixed;
+    top: -10px;
+    color: #ffdde1;
+    font-size: 20px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+.container {
+    padding: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 35px;
+}
+
+#message {
+    font-size: 20px;
+    margin-top: 20px;
+    min-height: 60px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #ff4e8a;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #ff4e8a;
+    color: white;
+}
+
+.gallery {
+    display: none;
+    margin-top: 30px;
+}
+
+.gallery img {
+    width: 160px;
+    margin: 10px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px white;
+    transition: 0.4s;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
+}
+
+/* Wish Box */
+.wish-box {
+    margin-top: 50px;
+}
+
+textarea {
+    width: 80%;
+    max-width: 400px;
+    height: 100px;
+    border-radius: 15px;
+    border: none;
+    padding: 10px;
+}
+
+#wishDisplay {
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+/* Confetti */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="confetti"></canvas>
+
+<div class="container">
+
+<h1>🎂 Happy Birthday Vaishnavi 💖</h1>
+
+<div id="message"></div>
+
+<button onclick="showSurprise()">Click For Surprise 🎁</button>
+
+<div class="gallery" id="gallery">
+    <img src="https://uploads.onecompiler.io/44f56ssr6/44f877w97/1000097664.jpg">
+    <img src="https://uploads.onecompiler.io/44f56ssr6/44f877w97/1000097841.jpg">
+    <img src="https://uploads.onecompiler.io/44f56ssr6/44f877w97/1000097845.jpg">
+    <img src="https://uploads.onecompiler.io/44f56ssr6/44f877w97/1000097671.jpg">
+    <img src="https://uploads.onecompiler.io/44f56ssr6/44f877w97/1000097844.jpg">
+    <img src="https://uploads.onecompiler.io/44f56ssr6/44f877w97/1000097840.jpg">
+    <img src="https://uploads.onecompiler.io/44f56ssr6/44f877w97/1000097665.jpg">
+    <img src="https://uploads.onecompiler.io/44f56ssr6/44f877w97/1000097843.jpg">
+    <img src="https://uploads.onecompiler.io/44f56ssr6/44f877w97/1000097842.jpg">
+</div>
+
+<div class="wish-box">
+    <h2>💌 Leave a Birthday Wish</h2>
+    <textarea id="wishInput" placeholder="Write your sweet message here..."></textarea><br>
+    <button onclick="submitWish()">Send Wish 💖</button>
+    <div id="wishDisplay"></div>
+</div>
+
+</div>
+
+<audio controls>
+    <source src="https://drive.google.com/uc?export=download&id=19pHSJQYVmIR9tLpe5xjdbORANjrSvPZ7" type="audio/mpeg">
+</audio>
+
+<script>
+// Typing Effect
+var text = "the world became a little more beautiful the day you were born...💕 if smiles were stars, your smile would be the whole galaxy.🫵 may your birthday be as beautiful and special as your smile, beautiful girl...💃✨ ✨💖";
+var i = 0;
+
+function typing() {
+    if (i < text.length) {
+        document.getElementById("message").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 50);
+    }
+}
+typing();
+
+// Falling Hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => { heart.remove(); }, 5000);
+}
+setInterval(createHeart, 300);
+
+// Confetti
+function launchConfetti() {
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    for (let i = 0; i < 150; i++) {
+        ctx.fillStyle = "hsl(" + Math.random()*360 + ",100%,50%)";
+        ctx.fillRect(Math.random()*canvas.width,
+                     Math.random()*canvas.height,
+                     5, 5);
+    }
+
+    setTimeout(() => ctx.clearRect(0,0,canvas.width,canvas.height), 1000);
+}
+
+// Surprise Button
+function showSurprise() {
+    document.getElementById("gallery").style.display = "block";
+    launchConfetti();
+    alert("Once again... Happy Birthday Beautiful Girl Tiwari ji... Party Chahiye 💖✨");
+}
+
+// Wish
+function submitWish() {
+    var wish = document.getElementById("wishInput").value;
+    if(wish.trim() !== "") {
+        document.getElementById("wishDisplay").innerHTML =
+        "💖 She wrote:<br><br>\"" + wish + "\"";
+        document.getElementById("wishInput").value = "";
+    } else {
+        alert("Write something sweet first 😊");
+    }
+}
+</script>
+
+</body>
+</html>
