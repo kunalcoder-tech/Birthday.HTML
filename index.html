@@ -154,7 +154,7 @@ canvas {
 
 </div>
 
-<audio id="music" loop>
+<audio id="music" loop preload="auto">
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c6f3c6d9e.mp3?filename=happy-birthday-to-you-piano-version-11781.mp3" type="audio/mpeg">
 </audio>
 
@@ -204,8 +204,10 @@ function launchConfetti() {
 // Surprise Button
 function showSurprise() {
     var audio = document.getElementById("music");
-    audio.currentTime = 0;
-    audio.play();
+
+    audio.play().catch(function(){
+        console.log("Audio play blocked");
+    });
 
     document.getElementById("gallery").style.display = "block";
     launchConfetti();
