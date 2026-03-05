@@ -144,7 +144,7 @@ canvas {
 
 </div>
 
-<audio autoplay loop>
+<audio id="music" loop>
     <source src="suacane-happy-birthday-25(MS8).mp3" type="audio/mpeg">
 </audio>
 
@@ -193,9 +193,10 @@ function launchConfetti() {
 
 // Surprise Button
 function showSurprise() {
+    document.getElementById("music").play();
     document.getElementById("gallery").style.display = "block";
     launchConfetti();
-    alert("Once again... Happy Birthday Beautiful Girl Tiwari ji... Party Chahiye 💖✨");
+    alert("Once again... Happy Birthday Beautiful Girl Tiwari ji... Party Chahiye 🎉💖✨🍻🎂");
 }
 
 // Wish
