@@ -87,6 +87,16 @@ button:hover {
   object-fit: contain;
   border-radius: 0;
 }
+    .firework{
+position:fixed;
+font-size:30px;
+animation:boom 1s ease-out;
+}
+
+@keyframes boom{
+0%{transform:scale(0);}
+100%{transform:scale(3); opacity:0;}
+}
 
 /* Wish Box */
 .wish-box {
@@ -151,6 +161,9 @@ canvas {
     <button onclick="submitWish()">Send Wish 💖</button>
     <div id="wishDisplay"></div>
 </div>
+    <div id="cake" style="display:none; font-size:80px; margin-top:20px;">
+        🎂
+</div>
 
 </div>
 
@@ -176,7 +189,7 @@ typing();
 function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
-    heart.innerHTML = "💖";
+    heart.innerHTML = "❣️";
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
     document.body.appendChild(heart);
@@ -211,8 +224,22 @@ function showSurprise() {
 
     document.getElementById("gallery").style.display = "block";
     launchConfetti();
+    document.getElementById("cake").style.display = "block"; 
     alert("Once again... Happy Birthday Beautiful Girl Tiwari ji... Party Chahiye 🎉💖✨🍻🎂");
 }
+    //fire works
+    function firework(){
+let fw = document.createElement("div");
+fw.className="firework";
+fw.innerHTML="🎆";
+fw.style.left=Math.random()*100+"vw";
+fw.style.top=Math.random()*100+"vh";
+document.body.appendChild(fw);
+
+setTimeout(()=>{fw.remove()},1000);
+}
+
+setInterval(firework,800);
 
 // Wish
 function submitWish() {
